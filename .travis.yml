@@ -26,3 +26,8 @@ before_deploy:
       api_key: "GITHUB OAUTH TOKEN"
       file: "FILE TO UPLOAD"
       skip_cleanup: true
+
+after_success:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+  - docker images
+  - docker push labrasse/alma-server:latest
